@@ -14,10 +14,18 @@ const render = (structure, selector) => {
   });
 
   // Ajout des enfants
-  if (typeof children === "string") {
-    newElement.innerHTML = children;
-  } else if (typeof children === "object") {
-    render(children, newElement);
+  switch (typeof children) {
+    case "string":
+      newElement.innerHTML = children;
+      break;
+    case "object":
+      render(children, newElement);
+      break;
+    case "array":
+      children.forEach((child) => render(child, newElement));
+      break;
+    default:
+      throw new Error("Type de children non supporté");
   }
 
   // Ajout de l'élément dans le DOM
