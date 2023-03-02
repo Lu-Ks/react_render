@@ -1,7 +1,7 @@
 const generateId = (number) => {
 	const digits = `${number}`.split('');
-	const values = 'abcdefghij'.split('');
-	return digits.map((digit) => values[digit]).join('');
+	const values = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+	return digits.map((digit) => values[Math.floor(Math.random() * values.length)]).join('');
 }
 
 const render = (structure, selector) => {
