@@ -9,11 +9,12 @@ const render = (structure, selector) => {
 	const root = document.querySelector(selector);
   if (!root) return;
 	const element = document.createElement(structure.type);
-	const elementId = generateId(new Date().getTime());
+	let elementId = generateId(new Date().getTime());
+	element.id = elementId;
 	Object.entries(structure.props).forEach(([key, value]) => {
 		element.setAttribute(key, value);
+		if (key === "id") elementId	= value;
 	});
-	element.id = elementId;
 	console.debug('element', element);
 	root.appendChild(element);
 	if (structure.children?.type) {
