@@ -1,11 +1,22 @@
+
 const render = (structure, selector) => {
-    // TODO LOGIQUE
+    const elt = document.createElement(structure.type);
+    const container = document.querySelector(selector);
+    container.appendChild(elt)
+    console.log(container)
+    for (let prop in structure.props) {
+        elt.setAttribute(prop, structure.props[prop]);
+    }
+    if (typeof structure.children == "string") {
+        elt.innerHTML = structure.children;
+    }
+    
 };
 
 const niveau1 = {
     type: "a",
     props: {
-        href: 'ynov.com',
+        href: 'https://ynov.com',
         style: 'color: #23b2a4; font-size: 40px',
     },
     children: `Lien vers ynov`,
